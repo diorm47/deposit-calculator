@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Калькулятор вкладов</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="calc-title">Калькулятор вклада</h1>
+      <hr />
+      <form>
+        <div class="calc-boxes">
+          <div class="calc-box">
+            <label>Сумма вклада (₽):</label>
+            <div class="input_box">
+              <input
+                type="range"
+                min="10000"
+                max="1000000"
+                onchange="showVal1(this.value)"
+                id="depositAmount"
+                class="range"
+                required
+              />
+              <span id="valBox1"></span>
+            </div>
+          </div>
+
+          <div class="calc-box">
+            <label>Срок вклада (в месяцах):</label>
+            <div class="input_box">
+              <input
+                type="range"
+                min="1"
+                max="60"
+                onchange="showVal2(this.value)"
+                id="depositTerm"
+                class="range"
+                required
+              />
+              <span id="valBox2"></span>
+            </div>
+          </div>
+
+          <div class="calc-box">
+            <label>Процентная ставка (%):</label>
+            <div class="input_box">
+              <input
+                type="range"
+                min="1"
+                max="100"
+                onchange="showVal3(this.value)"
+                id="interestRate"
+                class="range"
+                required
+              />
+              <span id="valBox3"></span>
+            </div>
+          </div>
+
+          <div class="calc-box">
+            <label>Капитализация процентов:</label>
+            <select id="compoundingFrequency">
+              <option value="1">Без капитализации</option>
+              <option value="1">Ежегодно</option>
+              <option value="12">Ежемесячно</option>
+              <option value="4">Раз в квартал</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-btn">
+          <button class="btn" type="button" onclick="calculate()">
+            Рассчитать
+          </button>
+        </div>
+
+        <hr />
+
+        <h1 class="calc-title">Результат расчета вклада</h1>
+
+        <div class="result-box">
+          <div class="result-inputs">
+            <span>Доход:</span>
+            <div id="totalInterest"></div>
+          </div>
+
+          <div class="result-inputs">
+            <span>Эффективная ставка (%):</span>
+            <div id="effectiveInterestRate"></div>
+          </div>
+
+          <div class="result-inputs">
+            <span>Сумма в конце срока:</span>
+            <div id="finalAmount"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="index.js"></script>
+    <script>
+      function showVal1(newVal) {
+        document.getElementById("valBox1").innerHTML = `${newVal} ₽ `;
+      }
+      function showVal2(newVal) {
+        document.getElementById("valBox2").innerHTML = `${newVal} м.`;
+      }
+      function showVal3(newVal) {
+        document.getElementById("valBox3").innerHTML = `${newVal} %`;
+      }
+    </script>
+  </body>
+</html>
